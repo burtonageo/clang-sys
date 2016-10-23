@@ -54,6 +54,8 @@ pub struct Clang {
     pub c_search_paths: Vec<PathBuf>,
     /// The directories searched by this `clang` executable for C++ headers.
     pub cpp_search_paths: Vec<PathBuf>,
+    /// The directories searched by this `clang` executable for Objective-C headers.
+    pub objc_search_paths: Vec<PathBuf>,
 }
 
 impl Clang {
@@ -63,11 +65,13 @@ impl Clang {
         let version = parse_version(&path);
         let c_search_paths = parse_search_paths(&path, "c");
         let cpp_search_paths = parse_search_paths(&path, "c++");
+        let objc_search_paths = parse_search_paths(&path, "c++");
         Clang {
             path: path,
             version: version,
             c_search_paths: c_search_paths,
             cpp_search_paths: cpp_search_paths,
+            objc_search_paths: objc_search_paths,
         }
     }
 
